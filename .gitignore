@@ -1,0 +1,43 @@
+# Ignorar archivos de configuración sensible
+config.json
+
+# Incluir un ejemplo de configuración
+!config.json.example
+
+# Ignorar archivos .txt (excepto si hay un ejemplo que quieras incluir)
+*.txt
+
+# Ignorar archivos .csv
+*.csv
+
+# Archivos y carpetas generados por el sistema operativo o IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Archivos de compilación y temporales de Python
+*.pyc
+__pycache__/
+
+# Archivos de logs
+*.log
+
+# Ignorar el entorno virtual de Python (venv)
+venv/
+.env/
+.venv/
+
+# Archivos de caché de pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Archivos de distribución
+dist/
+build/
+*.egg-info/
+
+# Ignorar las librerías instaladas localmente
+lib/
+bin/
+include/
