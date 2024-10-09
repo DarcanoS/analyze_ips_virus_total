@@ -73,7 +73,7 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu sistema:
 Con el entorno virtual activado y las configuraciones correctas, ejecuta el script principal:
 
 ```bash
-python main.py
+python prueba.py
 ```
 
 El script hará lo siguiente:

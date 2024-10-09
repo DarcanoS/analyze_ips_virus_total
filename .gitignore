@@ -3,7 +3,7 @@ config.json
 
 # Incluir un ejemplo de configuración
 !config.json.example
-
+!requirements.txt
 # Ignorar archivos .txt (excepto si hay un ejemplo que quieras incluir)
 *.txt
 
