@@ -13,24 +13,24 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu sistema:
 
 1. **Clona el repositorio**:
    ```bash
-   git clone https://github.com/tu_usuario/virustotal-ip-checker.git
-   cd virustotal-ip-checker
+   git clone https://github.com/DarcanoS/analyze_ips_virus_total.git
+   cd analyze_ips_virus_total
    ```
 
 2. **Crea un entorno virtual** (recomendado):
    En el directorio del proyecto, crea y activa un entorno virtual de Python:
    ```bash
-   python -m venv venv
+   python -m venv env
    ```
 
    - En Windows:
      ```bash
-     venv\Scripts\activate
+     env\Scripts\activate
      ```
 
    - En macOS/Linux:
      ```bash
-     source venv/bin/activate
+     source env/bin/activate
      ```
 
 3. **Instala las dependencias**:

@@ -24,9 +24,9 @@ __pycache__/
 *.log
 
 # Ignorar el entorno virtual de Python (venv)
-venv/
+env/
 .env/
-.venv/
+.env/
 
 # Archivos de caché de pip
 pip-log.txt
