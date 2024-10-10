@@ -32,14 +32,22 @@ def consultar_ip_virustotal(ip):
             # Extraer el campo "country" y "malicious"
             country = data.get("data", {}).get("attributes", {}).get("country", "Unknown")
             malicious = data.get("data", {}).get("attributes", {}).get("last_analysis_stats", {}).get("malicious", 0)
+            as_owner = data.get("data", {}).get("attributes", {}).get("as_owner", "Unknown")
+            
+            if malicious == 0:
+                malicious = 'Benigno'
+            else:
+                malicious = "Malicioso"
+                
             
             # Retornar solo country y malicious
             result = {
                 "country": country,
-                "malicious": malicious
+                "malicious": malicious,
+                "as_owner":as_owner
             }
             
-            return result
+            return result, response.json()
         else:
             return {"error": f"Error {response.status_code} al consultar la IP {ip}"}
     except Exception as e:
@@ -51,12 +59,13 @@ def validar_ips(lista_ips):
     errores = []
     
     for ip in lista_ips:
-        resultado = consultar_ip_virustotal(ip)
+        resultado, datas = consultar_ip_virustotal(ip)
         if "error" not in resultado:
             resultados.append({
                 "IP": ip,
                 "country": resultado["country"],
-                "malicious": resultado["malicious"]
+                "malicious": resultado["malicious"],
+                "as_owner": resultado["as_owner"]
             })
         else:
             errores.append({
@@ -65,12 +74,12 @@ def validar_ips(lista_ips):
             })
             print(f"Error con la IP {ip}: {resultado['error']}")
     
-    return resultados, errores
+    return resultados, errores, datas
 
 # Función para guardar los resultados en un archivo CSV con delimitador ;
 def guardar_resultados_csv(resultados, archivo_salida):
     with open(archivo_salida, 'w', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['IP', 'country', 'malicious']
+        fieldnames = ['IP', 'country', 'malicious','as_owner']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter=';')  # Usar ; como delimitador
         
         writer.writeheader()  # Escribir los encabezados
@@ -85,6 +94,11 @@ def guardar_errores_csv(errores, archivo_salida):
         writer.writeheader()  # Escribir los encabezados
         writer.writerows(errores)  # Escribir los datos de errores
 
+# Nueva función para guardar los resultados en un archivo JSON
+def guardar_resultados_json(resultados, archivo_salida):
+    with open(archivo_salida, 'w', encoding='utf-8') as f:
+        json.dump(resultados, f, ensure_ascii=False, indent=4)  # Guardar el archivo JSON con indentación
+
 # Main - flujo principal
 if __name__ == "__main__":
     # Especifica el archivo de IPs desde la configuración
@@ -94,7 +108,7 @@ if __name__ == "__main__":
     lista_ips = leer_ips(archivo_ips)
     
     # Validar las IPs con VirusTotal
-    resultados, errores = validar_ips(lista_ips)
+    resultados, errores, resultado = validar_ips(lista_ips)
     
     # Guardar los resultados en un archivo CSV
     guardar_resultados_csv(resultados, config['archivo_resultados'])
@@ -102,9 +116,12 @@ if __name__ == "__main__":
     # Guardar los errores en un archivo CSV
     guardar_errores_csv(errores, config['archivo_errores'])
     
+    # Guardar los resultados en un archivo JSON
+    guardar_resultados_json(resultado, config['archivo_resultados_json'])
+    
     # Mostrar los resultados en consola (opcional)
     for resultado in resultados:
-        print(f"IP: {resultado['IP']}, Country: {resultado['country']}, Malicious: {resultado['malicious']}")
+        print(f"IP: {resultado['IP']}, Country: {resultado['country']}, Malicious: {resultado['malicious']}, As_owner: {resultado['as_owner']}")
     
     # Mostrar los errores en consola (opcional)
     for error in errores:

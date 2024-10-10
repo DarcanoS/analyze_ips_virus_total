@@ -2,5 +2,6 @@
     "api_key": "TOKEN",
     "archivo_ips": "test.txt",
     "archivo_resultados": "resultados_virustotal.csv",
-    "archivo_errores": "errores_virustotal.csv"
+    "archivo_errores": "errores_virustotal.csv",
+    "archivo_resultados_json": "resultados_virustotal.json"
 }

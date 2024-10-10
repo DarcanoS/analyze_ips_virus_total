@@ -1,5 +1,6 @@
 # Ignorar archivos de configuración sensible
 config.json
+resultados_virustotal.json
 
 # Incluir un ejemplo de configuración
 !config.json.example
