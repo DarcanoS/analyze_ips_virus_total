@@ -55,7 +55,8 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu sistema:
        "api_key": "TU_API_KEY_AQUI",
        "archivo_ips": "test.txt",
        "archivo_resultados": "resultados_virustotal.csv",
-       "archivo_errores": "errores_virustotal.csv"
+       "archivo_errores": "errores_virustotal.csv",
+       "archivo_resultados_json": "resultados_virustotal.json"
    }
    ```
 
@@ -89,12 +90,12 @@ El script hará lo siguiente:
 virustotal-ip-checker/
 │
 ├── config.json.example   # Archivo de ejemplo de configuración (edítalo para crear config.json)
-├── main.py               # Script principal del proyecto
+├── prueba.py               # Script principal del proyecto
 ├── requirements.txt      # Dependencias del proyecto
 ├── test.txt              # Archivo de entrada con las IPs (ejemplo)
 ├── .gitignore            # Archivos ignorados por git
 ├── README.md             # Documentación del proyecto
-└── venv/                 # Entorno virtual (ignorado por git)
+└── env/                 # Entorno virtual (ignorado por git)
 ```
 
 ## Consideraciones
@@ -104,8 +105,8 @@ virustotal-ip-checker/
 
 ## Contribuciones
 
-¡Las contribuciones son bienvenidas! Si tienes mejoras o encuentras algún problema, abre un [issue](https://github.com/tu_usuario/virustotal-ip-checker/issues) o envía un pull request.
+¡Las contribuciones son bienvenidas! Si tienes mejoras o encuentras algún problema, abre un [issue](https://github.com/DarcanoS/analyze_ips_virus_total/issues) o envía un pull request.
 
 ## Licencia
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
